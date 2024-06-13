@@ -5,6 +5,7 @@
  */
 package paquete5;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -13,28 +14,41 @@ import java.util.Scanner;
  * @author reroes
  */
 public class Ejecutor2 {
+
     public static void main(String[] args) {
         // 1. Crear y presentar un obj de tipo Estudiante Presencial,
         // con datos por teclado
+        ArrayList<EstudiantePresencial> est = new ArrayList<EstudiantePresencial>();
         Scanner entrada = new Scanner(System.in);
+        boolean bandera = true;
         entrada.useLocale(Locale.US);
-        System.out.println("Ingrese nombre");
-        String n = entrada.nextLine();
-        System.out.println("Ingrese apellido");
-        String ap = entrada.nextLine();
-        System.out.println("Ingrese identificación");
-        String ced = entrada.nextLine();
-        System.out.println("Ingrese edad");
-        int edad = entrada.nextInt();
-        System.out.println("Ingrese número de créditos");
-        int creditos = entrada.nextInt();
-        System.out.println("Ingrese costo de créditos");
-        double costo = entrada.nextInt();
-        
-        EstudiantePresencial presencial = new EstudiantePresencial(n, ap, ced, 
-                edad, creditos, costo);
-        presencial.calcularMatriculaPresencial();
-        
-        System.out.printf("%s\n", presencial);
+        while (bandera) {
+
+            System.out.println("Ingrese nombre");
+            String n = entrada.nextLine();
+            System.out.println("Ingrese apellido");
+            String ap = entrada.nextLine();
+            System.out.println("Ingrese identificación");
+            String ced = entrada.nextLine();
+            System.out.println("Ingrese edad");
+            int edad = entrada.nextInt();
+            System.out.println("Ingrese número de créditos");
+            int creditos = entrada.nextInt();
+            System.out.println("Ingrese costo de créditos");
+            double costo = entrada.nextDouble();
+            entrada.nextLine();
+            EstudiantePresencial presencial = new EstudiantePresencial(n, ap, ced,
+                    edad, creditos, costo);
+            presencial.calcularMatriculaPresencial();
+            est.add(presencial);
+            System.out.println("Si desea salir ingrese n:");
+            String opc = entrada.nextLine();
+            if (opc.equals("n")) {
+                bandera = false;
+            }
+        }
+        for (EstudiantePresencial estudiantePres : est) {
+            System.out.printf("%s\n",estudiantePres);
+        }
     }
 }
